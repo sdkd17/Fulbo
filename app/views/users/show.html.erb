@@ -8,6 +8,29 @@
 				<td> Nickname</td> <td> <%= @user.nick %> </td>
 			</tr>
 			<tr>
+				<td> <img src="/assets/default_user.png" alt="imagen" class="circle" height="42" width="42"> </td> 
+
+				<td>
+					<% if logged_in? %>
+	   		<% unless current_user?(@user) %>
+	   			<% if current_user.following?(@user) %>
+	   				<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+             html: { method: :delete }) do |f| %>
+ 							<%= f.submit "Unfollow", class: "btn" %>
+						<% end %>
+					<% else %>
+	   				<%= form_for(current_user.active_relationships.build) do |f| %>
+  						<%= hidden_field_tag :followed_id, @user.id %>
+  						<%= f.submit "Follow", class: "btn" %>
+						<% end %>
+	   			
+	   				
+   				<%end%>
+ 				<%end%>
+	   	<%end%>
+				</td>
+			</tr>
+			<tr>
 				<td> Nombre</td> <td> <%= @user.nombre %> </td>
 			</tr>
 			<tr>
@@ -24,6 +47,13 @@
 			</tr>
 		</tbody>
 </table>
+
+
+<div class="row z-depth-2 center" style="margin: 10px 10px">
+	<div class = "col s12">
+		
+	</div>
+</div>
 
 <div class="row"> 
 	<div class="col s6">

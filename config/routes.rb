@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'static_pages#home'
   get 'sessions/new'
 
   get 'anotados/index'
@@ -29,10 +30,12 @@ Rails.application.routes.draw do
   post  '/login', to: 'sessions#create'
   get 'logout',   to: 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :partidos
   resources :anotados
-  
-  root 'static_pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :relationships,  only: [:create, :destroy]
 end
