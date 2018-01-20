@@ -1,0 +1,29 @@
+
+
+
+<div class="row" style="margin-top: 100px; margin-bottom: 100px;">
+	<div class="col s6 offset-s3">
+		<div class="card white  z-depth-5">
+			<div class="card-content ">
+				
+				<span class="card-title center">Iniciar Sesion</span>
+					<%= form_for(:session, url: login_path) do |f| %>
+						<div class="row">
+							<div class = "input-field col s12">
+								<%= f.text_field :nick %>
+								<%= f.label :nick %>
+							</div>
+ 						</div>
+						<div class = "input-field">
+							<%= f.label :password %>
+							<%= f.password_field :password %>
+						</div>
+
+						<div class="card-action"> 	
+								<%= f.submit 'Log In', :class => "btn " %>
+						</div>
+					<% end %>
+			</div>
+		</div>
+	</div>
+</div>

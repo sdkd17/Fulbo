@@ -1,0 +1,52 @@
+<h3 class="center">Crear Usuario</h3>
+
+<div class="card white">
+<%= form_for (@user) do |f| %>
+
+	<%= render 'shared/error_messages'%>
+	
+	<div class="card-content">
+		<div class="input-field" >
+			<%= f.label :nick %>
+			<%= f.text_field :nick %>
+		</div>
+
+		<div class="input-field">
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+		</div>
+
+		<div class="input-field">
+			<%= f.label :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
+		</div>
+
+		<div class="input-field">
+			<%= f.label :email %>
+			<%= f.email_field :email %> 
+		</div>
+
+		<div class="input-field">
+			<%= f.label :nombre %>
+			<%= f.text_field :nombre %>
+		</div>
+		<div class="input-field">
+			<%= f.label :apellido %>
+			<%= f.text_field :apellido %>
+		</div>
+		<%= f.label "Fecha Nacimiento" %>
+		<div class="input-field">
+			
+			<%= f.date_field :nacimiento %>
+		</div>
+		<div class="input-field">
+			<%= f.label :descripcion %>
+			<%= f.text_area :descripcion %>
+		</div>
+	</div>
+	<div class="card-action">
+		<%= f.submit "Crear Usuario", :class=>"btn" %>
+	</div>
+	
+<% end %>
+</div>

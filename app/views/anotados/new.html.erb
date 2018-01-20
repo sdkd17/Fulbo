@@ -1,0 +1,35 @@
+
+<div class="row">
+
+	<h3 class="center z-depth-3 grey">Anotarse a un partido</h3>
+
+	<table class="responsive-table bordered white z-depth-3">
+		<thead>
+			<th>Lugar</th>
+			<th>Fecha</th>
+		</thead>
+
+		<tbody>
+			<% @partidos.each do |partido| %>
+				<td><%= partido.lugar %></td>
+				<td><%= partido.fecha %></td>
+				<td>
+					<%= form_for (@anotado) do |f| %>
+
+						<%= f.hidden_field :user_id, :value => current_user.id %>
+
+						<%= f.hidden_field :partido_id, :value => partido.id %>
+
+						<%= f.submit 'Anotarse', :class=>"btn" %>
+
+					<% end %>
+						
+				</td>
+			<%end%>
+		
+			
+		</tbody>
+
+	</table>
+
+</div>

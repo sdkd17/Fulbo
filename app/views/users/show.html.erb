@@ -1,0 +1,87 @@
+<div class="row">
+<h3 class="center z-depth-2 grey">Datos de Usuario</h3>
+
+<table class="centered highlight white z-depth-2">
+	
+		<tbody>
+			<tr>
+				<td> Nickname</td> <td> <%= @user.nick %> </td>
+			</tr>
+			<tr>
+				<td> Nombre</td> <td> <%= @user.nombre %> </td>
+			</tr>
+			<tr>
+				<td> Apellido</td> <td><%= @user.apellido %> </td>
+			</tr>
+			<tr>
+				<td> Email</td> <td><%= @user.email %> </td>
+			</tr>
+			<tr>
+				<td> F. Nacimiento</td> <td><%= @user.nacimiento %> </td>
+			</tr>
+			<tr>
+				<td> Descripcion</td> <td><%= @user.descripcion %> </td>
+			</tr>
+		</tbody>
+</table>
+
+<div class="row"> 
+	<div class="col s6">
+		<div class="card grey z-depth-2">
+				<div class ="card-content">
+					<span class="card-title">Partidos Organizados </span>
+					<table class="responsive-table centered bordered white">
+						<thead>
+							<th> Lugar </th>
+							<th> Fecha </th>
+						</thead>
+						<tbody>
+							<% @user.partidos.each do |partido| %>
+							<tr> 
+								<td> <%= partido.lugar %> </td>
+								<td> <%= partido.fecha %> </td>
+								<td> <%= link_to "Ver", partido, :class=>"btn" %> </td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<%if logged_in?%>
+					<div class="card-action">
+						<%= link_to 'Crear Partido', partidos_new_path, :class=>"btn" %>
+					</div>
+				<%end%>
+		</div>
+	</div>
+
+
+	<div class="col s6">
+		<div class="card grey z-depth-2">
+				<div class ="card-content">
+					<span class="card-title">Anotado a </span>
+					<table class="responsive-table centered bordered white">
+						<thead>
+							<th> Lugar </th>
+							<th> Fecha </th>
+						</thead>
+						<tbody>
+							<% @user.anotado_a.each do |partido| %>
+							<tr> 
+								<td> <%= partido.lugar %> </td>
+								<td> <%= partido.fecha %> </td>
+								<td> <%= link_to "Ver", partido, :class=>"btn" %> </td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+					<%if logged_in?%>
+						<div class="card-action">
+							<%= link_to 'Anotarse a uno', anotados_new_path, :class=>"btn" %>
+						</div>
+					<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>

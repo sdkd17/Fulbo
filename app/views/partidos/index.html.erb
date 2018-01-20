@@ -1,0 +1,22 @@
+<div class="row">
+	<h3 class="responsive-table center z-depth-2 grey">Lista de Partidos</h3>
+
+	<table class="white z-depth-2">
+		<thead> 
+			<th> Nick Organizador </th>
+			<th> Lugar </th>
+			<th> Fecha </th>
+		</thead>
+
+		<tbody >
+			<% @partidos.each do |partido| %>
+				<tr> 
+					<td> <%= link_to partido.user.nick, partido.user 	%></td>
+					<td> <%= partido.lugar 		%></td>
+					<td> <%= partido.fecha 		%></td>
+					<td> <%= link_to 'Ver Partido', partido, :class=>"btn" 		%></td>
+				</tr>
+			<% end %>
+		</tbody>
+</table>
+</div>

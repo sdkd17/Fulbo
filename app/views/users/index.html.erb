@@ -1,0 +1,12 @@
+<h3 class="center grey z-depth-2">Lista de Usuarios</h3>
+
+<ul class="collection z-depth-2">
+	<% @users.each  do |user| %>
+		<li class="collection-item avatar">
+			<img src="/assets/default_user.png" alt="imagen" class="circle">
+			<span class="title">Nickname: <%= link_to user.nick, user %>  </span> 
+	   	<p> <%= user.nombre %>, <%= user.apellido %> </p>
+		</li>
+	<% end %>
+</ul>
+

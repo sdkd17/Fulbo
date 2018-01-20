@@ -1,0 +1,24 @@
+
+<nav class="z-depth-5">
+	<div class="nav-wrapper green darken-3">
+		<ul class="left hide-on-med-and-down">
+			<li> <%= link_to "Usuarios", users_path %></li>
+			<li> <%= link_to "Partidos", partidos_path %></li>
+		</ul>
+
+		<%= link_to "Fulbo", root_path, {:class=>"brand-logo center"} %>
+
+		<ul class="right">
+			<li>
+				<% if logged_in? %>
+					<%= link_to current_user.nick, current_user, { :class => "right"} %>
+					<%= link_to 'Cerrar Sesion', '/logout', { :class => "right"} %> 
+				<% else %>
+						<%= link_to 'Iniciar Sesion', '/login', { :class => "right"} %>
+						<%= link_to 'Registrarse', '/signup', { :class => "right"} %> 
+				<% end %>
+			</li>		
+		</ul>
+	</div>
+</nav>
+

@@ -1,0 +1,26 @@
+
+<div class="card white">
+	<div class="card-content">
+		<span class="card-title center">Crear Partido</span>
+
+	
+		<%= form_for (@partido) do |f| %>
+			
+			<%= f.hidden_field :user_id, :value => current_user.id %>
+		
+			<div class="input-field">
+				<%= f.label :lugar %>
+				<%= f.text_field :lugar %>
+			</div>
+
+			<div class="input-field">
+			
+				<%= f.datetime_field :fecha %>	
+			</div>
+
+			<div class="card-action">
+				<%= f.submit 'Crear Partido', :class=>"btn" %>
+			</div>
+		<% end %>
+	</div>
+</div>

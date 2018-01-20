@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nick: MyString
+  pass: MyString
+  nombre: MyString
+  apellido: MyString
+  nacimiento: 2017-12-23
+  descripcion: MyText
+  calificacion: 1
+
+two:
+  nick: MyString
+  pass: MyString
+  nombre: MyString
+  apellido: MyString
+  nacimiento: 2017-12-23
+  descripcion: MyText
+  calificacion: 1

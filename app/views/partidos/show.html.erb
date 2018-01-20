@@ -1,0 +1,75 @@
+<div class="row"  style="margin: 50px 50px">
+	<h3 class="center z-depth-2 grey">Datos de Partido</h3>
+
+	<table class="bordered highlight white z-depth-2" style="margin-bottom: 50px">
+			<tbody>
+				<tr>
+					<td> ID Partido</td>
+					<td> <%= @partido.id %>  </td>
+				</tr>
+				<tr>	
+					<td> ID Creador</td>		
+					<td> <%= @partido.user_id %>  </td>
+				</tr>
+				<tr>
+					<td> Organizador</td>
+					<td> <%= link_to @partido.user.nick, @partido.user %>  </td>
+				</tr>
+				<tr>
+					<td>Lugar</td>
+					<td> <%= @partido.lugar %>  </td>
+				</tr>
+				<tr>
+					<td>Fecha</td>
+					<td> <%= @partido.fecha %> </td>
+				</tr>
+			</tbody>
+	</table>
+</div>
+		
+<div class="row">
+
+	<div class="col s6">
+		<ul class="collection with-header z-depth-2">
+			<li class="collection-header grey"><h5>Usuarios Anotados</h5></li>
+			<% @partido.anotados.each do |anotado| %>
+				<li class="collection-item">
+					<%= link_to User.find(anotado.user_id).nick, User.find(anotado.user_id) %>
+
+					<% if current_user.id == @partido.user_id and not 
+				 		   @partido.aceptados.include?(anotado.user_id)  %>
+							<%= form_tag anotados_aceptar_path do %>
+								<%= hidden_field_tag :user_id, anotado.user_id %>
+								<%= hidden_field_tag :partido_id, @partido.id %>
+								<%= submit_tag 'Aceptar', :class => "btn" %>
+							<%end%>
+						<%end%>
+					<end%>
+				</li>
+			<%end%>
+		</ul>	
+	</div>
+
+	<div class="col s6">
+		<ul class="collection with-header z-depth-2">
+			<li class="collection-header grey"><h5>Usuarios Aceptados</h5></li>
+			<% @partido.aceptados.each do |aceptado| %>
+				<li class="collection-item"> <%= link_to User.find(aceptado.user_id).nick, User.find(aceptado.user_id) %> 
+
+					<% if current_user.id == aceptado.user_id then %>
+						<%= form_tag anotados_quitar_path do %>
+							<%= hidden_field_tag :user_id, aceptado.user_id %>
+							<%= hidden_field_tag :partido_id, @partido.id %>
+							<%= submit_tag 'Borrar', :class => "btn" %>
+						<%end%>
+					<%end%>
+				</li>
+			<%end%>
+		</ul>
+
+	</div>
+</div>		
+
+
+
+
