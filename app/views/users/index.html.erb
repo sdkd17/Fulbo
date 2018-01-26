@@ -3,7 +3,7 @@
 <ul class="collection z-depth-2">
 	<% @users.each  do |user| %>
 		<li class="collection-item avatar">
-			<img src="/assets/default_user.png" alt="imagen" class="circle">
+			<%= image_tag user.avatar.url, height: '32', width: '32', :class=>"circle" %> 
 			<span class="title">Nickname: <%= link_to user.nick, user %>  </span> 
 	   	<p> <%= user.nombre %>, <%= user.apellido %> </p>
 		</li>
