@@ -9,7 +9,7 @@
 		</thead>
 
 		<tbody >
-			<% if @partidos == nil %>
+			<% if @partidos.empty? %>
 				<tr> <td> <span> No hay partidos para este usuario <span> </td></tr>
 			<%else%>
 				<% @partidos.each do |partido| %>

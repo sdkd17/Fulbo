@@ -2,11 +2,12 @@ class PartidosController < ApplicationController
   
   def index
   	todos = Partido.all
-    @partidos = nil
-     debugger
+    @partidos = []
+     #debugger
     if logged_in?
       todos.each do |partido|
-        if current_user.following.select(:id).include?(partido.user_id)
+        if current_user.following.include?(User.find(partido.user_id)) 
+          #hacer esto sin que consulte a la basepara encontrar el usuario
           @partidos << partido
         end
       end
