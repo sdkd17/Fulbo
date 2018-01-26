@@ -9,7 +9,7 @@
 			</tr>
 			<tr>
 				<!-- <img src="/assets/default_user.png" alt="imagen" class="circle" height="42" width="42"> -->
-				<td> <%= image_tag @user.avatar.url, height: '32', width: '32' %>  </td> 
+				<td> <%= image_tag @user.avatar.url, height: '32', width: '32', :class => "circle" %>  </td> 
 
 				<td>
 					<% if logged_in? %>
@@ -136,7 +136,8 @@
 				<div class="card-content">
 					<span class="card-title">Seguidores</span>	
 					<ul class="collection">
-						<% @user.followers.each do |user| %>
+
+						<% @user.followers.to_a.uniq.each do |user| %>
 							<li class="collection-item"> 
 								<div> 
 									<%= link_to user.nick, user %>

@@ -1,7 +1,16 @@
 class PartidosController < ApplicationController
   
   def index
-  	@partidos = Partido.all
+  	todos = Partido.all
+    @partidos = nil
+     debugger
+    if logged_in?
+      todos.each do |partido|
+        if current_user.following.select(:id).include?(partido.user_id)
+          @partidos << partido
+        end
+      end
+    end
   end
 
   def show
