@@ -9,14 +9,18 @@
 		</thead>
 
 		<tbody >
-			<% @partidos.each do |partido| %>
-				<tr> 
-					<td> <%= link_to partido.user.nick, partido.user 	%></td>
-					<td> <%= partido.lugar 		%></td>
-					<td> <%= partido.fecha 		%></td>
-					<td> <%= link_to 'Ver Partido', partido, :class=>"btn" 		%></td>
-				</tr>
-			<% end %>
+			<% if @partidos.empty? %>
+				<tr> <td> <span> No hay partidos para este usuario <span> </td></tr>
+			<%else%>
+				<% @partidos.each do |partido| %>
+					<tr> 
+						<td> <%= link_to partido.user.nick, partido.user 	%></td>
+						<td> <%= partido.lugar 		%></td>
+						<td> <%= partido.fecha 		%></td>
+						<td> <%= link_to 'Ver Partido', partido, :class=>"btn" 		%></td>
+					</tr>
+				<% end %>
+			<%end%>
 		</tbody>
 </table>
 </div>

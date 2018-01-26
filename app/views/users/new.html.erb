@@ -1,7 +1,7 @@
 <h3 class="center">Crear Usuario</h3>
 
 <div class="card white">
-<%= form_for (@user) do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
 
 	<%= render 'shared/error_messages'%>
 	
@@ -10,7 +10,7 @@
 			<%= f.label :nick %>
 			<%= f.text_field :nick %>
 		</div>
-
+		
 		<div class="input-field">
 			<%= f.label :password %>
 			<%= f.password_field :password %>
@@ -35,15 +35,30 @@
 			<%= f.text_field :apellido %>
 		</div>
 		<%= f.label "Fecha Nacimiento" %>
-		<div class="input-field">
-			
+		<div class="input-field">			
 			<%= f.date_field :nacimiento %>
 		</div>
 		<div class="input-field">
 			<%= f.label :descripcion %>
 			<%= f.text_area :descripcion %>
 		</div>
+		
+		
+		<%= f.label "Imagen Perfil" %>
+		<div class="input-field file-field">
+			<div class="btn">
+				<span>FILE</span>
+				<%= f.file_field :avatar	 %>	
+			</div>
+			
+			<div class="file-path-wrapper">
+				<input class="file-path validate" type="text">
+			</div>				
+		</div>
+
 	</div>
+
+
 	<div class="card-action">
 		<%= f.submit "Crear Usuario", :class=>"btn" %>
 	</div>

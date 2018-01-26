@@ -1,11 +1,27 @@
 class PartidosController < ApplicationController
   
   def index
-  	@partidos = Partido.all
+  	todos = Partido.all
+    @partidos = []
+     
+    if logged_in?
+      todos.each do |partido|
+        if current_user.following.include?(User.find(partido.user_id)) 
+          #hacer esto sin que consulte a la basepara encontrar el usuario
+          @partidos << partido
+        end
+      end
+    end
   end
 
   def show
     @partido = Partido.find(params[:id])
+    @anotado = nil
+    # debugger
+
+    unless @partido.anotados.include?(Anotado.find_by({partido_id: @partido.id, user_id: current_user.id}))
+      @anotado = Anotado.new
+    end
   end
 
   def new
