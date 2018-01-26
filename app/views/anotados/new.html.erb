@@ -1,4 +1,4 @@
-
+<!-- NO SE UTILIZA MAS -->
 <div class="row">
 
 	<h3 class="center z-depth-3 grey">Anotarse a un partido</h3>
@@ -11,9 +11,11 @@
 
 		<tbody>
 			<% @partidos.each do |partido| %>
-				<td><%= partido.lugar %></td>
-				<td><%= partido.fecha %></td>
-				<td>
+				<tr> 
+					<td><%= partido.lugar %></td>
+					<td><%= partido.fecha %></td>
+				
+					<td>
 					<%= form_for (@anotado) do |f| %>
 
 						<%= f.hidden_field :user_id, :value => current_user.id %>
@@ -23,13 +25,9 @@
 						<%= f.submit 'Anotarse', :class=>"btn" %>
 
 					<% end %>
-						
-				</td>
+					</td>
+				</tr>	
 			<%end%>
-		
-			
 		</tbody>
-
 	</table>
-
 </div>

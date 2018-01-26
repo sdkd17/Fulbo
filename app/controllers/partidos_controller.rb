@@ -3,7 +3,7 @@ class PartidosController < ApplicationController
   def index
   	todos = Partido.all
     @partidos = []
-     #debugger
+     
     if logged_in?
       todos.each do |partido|
         if current_user.following.include?(User.find(partido.user_id)) 
@@ -16,6 +16,12 @@ class PartidosController < ApplicationController
 
   def show
     @partido = Partido.find(params[:id])
+    @anotado = nil
+    # debugger
+
+    unless @partido.anotados.include?(Anotado.find_by({partido_id: @partido.id, user_id: current_user.id}))
+      @anotado = Anotado.new
+    end
   end
 
   def new

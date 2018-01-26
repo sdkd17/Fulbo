@@ -1,7 +1,7 @@
-<div class="row"  style="margin: 50px 50px">
+<div class="row" style="margin-top: 50px">
 	<h3 class="center z-depth-2 grey">Datos de Partido</h3>
 
-	<table class="bordered highlight white z-depth-2" style="margin-bottom: 50px">
+	<table class="bordered highlight white z-depth-2" style="margin-bottom: 25px">
 			<tbody>
 				<tr>
 					<td> ID Partido</td>
@@ -28,6 +28,22 @@
 </div>
 		
 <div class="row">
+
+	<% 
+	unless @anotado == nil %>
+		<div class="col s12 center" style = "margin-bottom: 50px">
+			<%= form_for (@anotado) do |f| %>
+
+				<%= f.hidden_field :user_id, :value => current_user.id %>
+
+				<%= f.hidden_field :partido_id, :value => @partido.id %>
+
+				<%= f.submit 'Anotarse', :class=>"btn-large" %>
+
+			<% end %>
+
+		</div>
+	<%end%>
 
 	<div class="col s6">
 		<ul class="collection with-header z-depth-2">

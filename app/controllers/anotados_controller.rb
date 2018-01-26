@@ -18,12 +18,12 @@ class AnotadosController < ApplicationController
   def create
   	@anotado = Anotado.new(anotado_params)
   	if (@anotado.save)
-  		render 'show'
+  		redirect_to Partido.find(@anotado.partido_id)
 		else
-			render 'new'
+      render 'shared/error_messages' 
 		end
-
   end
+
 
   def aceptar
     anotado = Anotado.find_by!(user_id: params[:user_id], partido_id: params[:partido_id])
