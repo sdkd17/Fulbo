@@ -38,4 +38,5 @@ Rails.application.routes.draw do
   resources :partidos
   resources :anotados
   resources :relationships,  only: [:create, :destroy]
+  resources :locals, only: [:new, :create, :show, :edit, :destroy]
 end

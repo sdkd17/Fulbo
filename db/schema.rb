@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124153752) do
+ActiveRecord::Schema.define(version: 20180126223346) do
 
   create_table "anotados", force: :cascade do |t|
     t.integer "user_id"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20180124153752) do
     t.index ["partido_id"], name: "index_anotados_on_partido_id"
     t.index ["user_id", "partido_id"], name: "index_anotados_on_user_id_and_partido_id", unique: true
     t.index ["user_id"], name: "index_anotados_on_user_id"
+  end
+
+  create_table "locals", force: :cascade do |t|
+    t.string "barrio"
+    t.string "direccion"
+    t.string "telefono"
+    t.string "email"
+    t.time "opens"
+    t.time "closes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "partidos", force: :cascade do |t|

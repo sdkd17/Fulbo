@@ -1,0 +1,26 @@
+<div class="row">
+<h3 class="center z-depth-2 grey">Datos de Local</h3>
+
+	<table class="centered highlight white z-depth-2" style="margin-bottom: 25px">
+		
+			<tbody>
+				<tr>
+					<td> Barrio</td> <td> <%= @local.barrio %> </td>
+				</tr>
+				<tr>
+					<td> Direccion</td> <td> <%= @local.direccion %> </td>
+				</tr>
+				<tr>
+					<td> Telefono</td> <td><%= @local.telefono %> </td>
+				</tr>
+				<tr>
+					<td> Email</td> <td><%= @local.email %> </td>
+				</tr>
+				<tr>
+					<td> Abierto</td> <td><%= @local.opens %> - <%= @local.closes %>  Hs</td>
+				</tr>
+				
+			</tbody>
+	</table>
+
+</div>
