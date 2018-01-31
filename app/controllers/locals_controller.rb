@@ -18,7 +18,16 @@ class LocalsController < ApplicationController
 	end
 
 	def edit
+		@local = Local.find(params[:id])
+	end
 
+	def update
+		@local = Local.find(params[:id])
+		if @local.update_attributes(local_params)
+			render 'show'
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
