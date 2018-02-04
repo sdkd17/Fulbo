@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126223346) do
+ActiveRecord::Schema.define(version: 20180201145545) do
 
   create_table "anotados", force: :cascade do |t|
     t.integer "user_id"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20180126223346) do
     t.index ["user_id"], name: "index_anotados_on_user_id"
   end
 
+  create_table "courts", force: :cascade do |t|
+    t.integer "precio"
+    t.integer "local_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "CourtType"
+    t.index ["local_id"], name: "index_courts_on_local_id"
+  end
+
   create_table "locals", force: :cascade do |t|
     t.string "barrio"
     t.string "direccion"
@@ -32,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180126223346) do
     t.time "closes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nombre"
   end
 
   create_table "partidos", force: :cascade do |t|

@@ -5,6 +5,12 @@
 
 	
 	<div class="card-content">
+			
+		<%= f.label :nombre %>
+		<div class="input-field" >
+			<%= f.text_field :nombre %>
+		</div>	
+
 		<%= f.label :barrio %>
 		<div class="input-field" >
 			<%= f.text_field :barrio %>
@@ -29,7 +35,7 @@
 		<div class="input-field">
 			<%= f.text_field :opens %>
 		</div>
-		
+
 		<%= f.label :closes %>
 		<div class="input-field">
 			<%= f.text_field :closes %>

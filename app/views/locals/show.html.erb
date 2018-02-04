@@ -5,6 +5,9 @@
 		
 			<tbody>
 				<tr>
+					<td> Cancha</td> <td> <%= @local.nombre %> </td>
+				</tr>
+				<tr>
 					<td> Barrio</td> <td> <%= @local.barrio %> </td>
 				</tr>
 				<tr>
@@ -25,7 +28,52 @@
 
 	<div class="center">
 		<%= link_to 'Editar Local', edit_local_path(@local), :class=>'btn-large' %>
-		
+	</div>
+
+	<div class="row">
+		<div class="col s6">
+			<div class="card">
+				<div class="card-content">
+					<span class="card-title"> Crear Cancha </span>
+					<%= form_for (@court) do |f| %>
+						
+						<%= f.hidden_field :local_id, :value => @local.id %>
+						
+						<div class="input-field">
+							<%= f.label :precio %>
+							<%= f.number_field :precio %>
+						</div>
+
+						<div class="input-field">
+	  					<%= f.label :CourtType %><br>
+						  <%= f.select :CourtType, CourtType.court_types.keys %>
+						</div>
+
+						<div class="">
+							<%= f.submit "Crear Cancha", :class =>"btn" %>
+						</div>
+					<%end%>
+				</div>
+				<div class="card-action">
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="col s6">
+			<div class="card">
+				<div class="card-content">
+					<span class="card-title"> Lista Canchas </span>
+					<ul class="collection">
+						<li class="collection-item"> </li>
+					</ul>
+				</div>
+				<div class="card-action">
+					
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 </div>

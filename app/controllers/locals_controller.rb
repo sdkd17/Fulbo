@@ -6,6 +6,7 @@ class LocalsController < ApplicationController
 
 	def create
 		@local = Local.new(local_params)
+		@court = Court.new
 		if @local.save
 			render 'show'
 		else
@@ -15,6 +16,7 @@ class LocalsController < ApplicationController
 
 	def show
 		@local = Local.find(params[:id])
+		@court = Court.new
 	end
 
 	def edit
@@ -37,7 +39,7 @@ class LocalsController < ApplicationController
 	private
 
 		def local_params
-			params.require(:local).permit(:barrio, :direccion, :telefono, :email,
+			params.require(:local).permit(:nombre, :barrio, :direccion, :telefono, :email,
 																		:opens, :closes)
 		end
 
