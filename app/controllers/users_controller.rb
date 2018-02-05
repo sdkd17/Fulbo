@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
 	def index
-		@users = User.all
+		if logged_in? and current_user.player?	
+				@users = User.player
+		else
+			@users = User.all
+		end
 	end
 
 	def show
@@ -39,7 +43,7 @@ class UsersController < ApplicationController
 			params.require(:user).permit(	:nick, :password, 
 																		:password_confirmation, 
 																 		:nombre, :apellido, :nacimiento, :email, 
-																 		:descripcion, :avatar)
+																 		:descripcion, :avatar, :role)
 		end
 
 end

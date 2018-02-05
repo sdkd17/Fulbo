@@ -1,0 +1,26 @@
+<div class="row">
+	<h3 class="responsive-table center z-depth-2 grey">Lista de Locales</h3>
+
+	<table class="white z-depth-2">
+		<thead> 
+			<th> Nombre </th>
+			<th> Direccion </th>
+			<th> Telefono </th>
+		</thead>
+
+		<tbody >
+			<% if @locals.empty? %>
+				<tr> <td> <span> No existen locales <span> </td></tr>
+			<%else%>
+				<% @locals.each do |local| %>
+					<tr> 
+						<td> <%= local.nombre	%></td>
+						<td> <%= local.direccion %></td>
+						<td> <%= local.telefono %></td>
+						<td> <%= link_to 'Ver Local', local, :class=>"btn" 		%></td>
+					</tr>
+				<% end %>
+			<%end%>
+		</tbody>
+</table>
+</div>

@@ -1,5 +1,9 @@
 class LocalsController < ApplicationController
 
+	def index
+		@locals = Local.all
+	end
+
 	def new
 		@local = Local.new
 	end
@@ -40,7 +44,7 @@ class LocalsController < ApplicationController
 
 		def local_params
 			params.require(:local).permit(:nombre, :barrio, :direccion, :telefono, :email,
-																		:opens, :closes)
+																		:opens, :closes, :user_id)
 		end
 
 end

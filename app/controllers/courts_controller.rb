@@ -3,10 +3,16 @@ class CourtsController < ApplicationController
   end
 
   def create
-    params[:courts_number].to_i.times do |i|
+    debugger
+    courts_number = params[:courts_number]
+    if courts_number == 0
       @court = Court.new(court_params)
-    
       @court.save  
+    else
+      params[:courts_number].to_i.times do |i|
+        @court = Court.new(court_params)
+        @court.save  
+      end
     end
   
   	
