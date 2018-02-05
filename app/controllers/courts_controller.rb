@@ -3,10 +3,13 @@ class CourtsController < ApplicationController
   end
 
   def create
-  	@court = Court.new(court_params)
+    params[:courts_number].to_i.times do |i|
+      @court = Court.new(court_params)
+    
+      @court.save  
+    end
+  
   	
-  	@court.save
-	
 		redirect_to Local.find(court_params[:local_id])
 
   end

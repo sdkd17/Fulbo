@@ -1,3 +1,3 @@
 class CourtType < ActiveRecord::Base
-  enum court_type: [:f5, :f7, :f11]
+  enum court_type: [:F5, :F7, :F11]
 end

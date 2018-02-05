@@ -26,6 +26,7 @@ class PartidosController < ApplicationController
 
   def new
   	@partido = Partido.new
+    @local_names = Local.all.pluck(:nombre)
   end
 
   def create
