@@ -1,5 +1,7 @@
 class LocalsController < ApplicationController
 
+	before_action :require_owner_login 
+
 	def index
 		@locals = Local.all
 	end
@@ -47,4 +49,13 @@ class LocalsController < ApplicationController
 																		:opens, :closes, :user_id)
 		end
 
+		def require_owner_login
+			unless logged_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to '/login'
+      end
+      if current_user.player?
+        render 'static_pages/error_tipo_usuario'
+      end
+		end
 end
