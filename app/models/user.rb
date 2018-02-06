@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+	#roles
+	enum role: [:local_owner, :player]
+	after_initialize :set_default_role, :if => :new_record?
+
 	has_secure_password
 	#relaciones con los partidos
 	has_many :partidos #organiza muchos partidos
@@ -46,6 +50,11 @@ class User < ApplicationRecord
 	def following?(other_user)
 		following.include?(other_user)
 	end
+
+	#roles
+	def set_default_role
+    self.role ||= :player
+  end
 
 	private
 

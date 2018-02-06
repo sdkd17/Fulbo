@@ -1,0 +1,52 @@
+<h3 class="center">Editar Local</h3>
+
+<div class="card white">
+<%= form_for @local do |f| %>
+
+	
+	<div class="card-content">
+			
+		<%= f.label :nombre %>
+		<div class="input-field" >
+			<%= f.text_field :nombre %>
+		</div>	
+
+		<%= f.label :barrio %>
+		<div class="input-field" >
+			<%= f.text_field :barrio %>
+		</div>
+		
+		<%= f.label :direccion %>
+		<div class="input-field">			
+			<%= f.text_field :direccion %>
+		</div>
+
+		<%= f.label :telefono %>
+		<div class="input-field">
+			<%= f.text_field :telefono %>
+		</div>
+
+		<%= f.label :email %>
+		<div class="input-field">
+			<%= f.email_field :email %> 
+		</div>
+
+		<%= f.label :opens %>
+		<div class="input-field">
+			<%= f.text_field :opens %>
+		</div>
+
+		<%= f.label :closes %>
+		<div class="input-field">
+			<%= f.text_field :closes %>
+		</div>
+
+	</div>
+
+
+	<div class="card-action">
+		<%= f.submit "Editar Local", :class=>"btn" %>
+	</div>
+	
+<% end %>
+</div>

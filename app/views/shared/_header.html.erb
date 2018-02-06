@@ -4,6 +4,14 @@
 		<ul class="left hide-on-med-and-down">
 			<li> <%= link_to "Usuarios", users_path %></li>
 			<li> <%= link_to "Partidos", partidos_path %></li>
+			<li> <%= link_to "Locales", locals_path %></li>
+			<% if logged_in? %>
+				<% if current_user.local_owner? %>
+					<% if Local.find_by(user_id: current_user.id) == nil %>
+						<li> <%= link_to "Nuevo Local", new_local_path %> </li>
+					<%end%>
+				<%end%>
+			<%end%>	
 		</ul>
 
 		<%= link_to "Fulbo", root_path, {:class=>"brand-logo center"} %>

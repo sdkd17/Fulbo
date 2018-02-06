@@ -43,6 +43,9 @@
 			<%= f.text_area :descripcion %>
 		</div>
 		
+		<div class="input-field">
+			<%= f.select :role, User.roles.keys %>
+		</div>
 		
 		<%= f.label "Imagen Perfil" %>
 		<div class="input-field file-field">

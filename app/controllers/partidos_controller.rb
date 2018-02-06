@@ -1,5 +1,7 @@
 class PartidosController < ApplicationController
   
+  before_action :require_player_login, only: [:new, :create]
+
   def index
   	todos = Partido.all
     @partidos = []
@@ -26,6 +28,7 @@ class PartidosController < ApplicationController
 
   def new
   	@partido = Partido.new
+    @local_names = Local.all.pluck(:nombre)
   end
 
   def create
@@ -43,4 +46,14 @@ class PartidosController < ApplicationController
   	def partido_params
   		params.require(:partido).permit(:user_id, :lugar, :fecha)
   	end
+
+    def require_player_login
+      unless logged_in?
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to '/login'
+      end
+      if current_user.local_owner?
+        render 'static_pages/error_tipo_usuario'
+      end
+    end
 end

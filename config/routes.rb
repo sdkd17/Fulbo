@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'courts/new'
+
+  get 'courts/create'
+
+  get 'courts/destroy'
+
   root 'static_pages#home'
   get 'sessions/new'
 
@@ -38,4 +44,6 @@ Rails.application.routes.draw do
   resources :partidos
   resources :anotados
   resources :relationships,  only: [:create, :destroy]
+  resources :locals
+  resources :courts, only: [:new, :create, :destroy]
 end
