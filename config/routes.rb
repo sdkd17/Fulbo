@@ -1,12 +1,23 @@
 Rails.application.routes.draw do
 
+  get 'reservation/index'
+
+  get 'reservation/new'
+
+  get 'reservation/create'
+
+  get 'reservation/update'
+
+  get 'reservation/edit'
+
+  get 'reservation/destroy'
+
   get 'courts/new'
 
   get 'courts/create'
 
   get 'courts/destroy'
 
-  root 'static_pages#home'
   get 'sessions/new'
 
   get 'anotados/index'
@@ -46,4 +57,7 @@ Rails.application.routes.draw do
   resources :relationships,  only: [:create, :destroy]
   resources :locals
   resources :courts, only: [:new, :create, :destroy]
+  resources :reservations
+
+  root 'static_pages#home'
 end

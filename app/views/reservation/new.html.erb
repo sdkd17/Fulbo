@@ -1,0 +1,38 @@
+<div class="row">
+	<h3 class="center">Crear reserva</h3>
+
+	<div class="container white z-depth-3" style="padding: 20px">
+		<%= form_for (@reservation)	 do |f| %>
+
+			<% f.hidden_field :user_id, :value => current_user.id %>
+
+			<div class="input-field">
+				<%= f.select :local_id do %>
+					<% @locals.each do |local| %>
+						<%= content_tag(:option, local.last, value: local.first) %>
+					<%end%>
+				<%end%>
+				<label>Seleccionar Local</label>
+			</div>
+			
+			
+			 <div class="input-field">
+    		<select id="canchas">
+      		<option value="" disabled selected>Seleccionar cancha</option>
+		    </select>
+		    <label>Seleccionar cancha</label>
+			</div>	
+			
+
+			<div class="input-field">
+					<%= f.date_field :fecha %>	
+			</div>	
+
+			<div class="card-action">
+				<%= f.submit 'Crear Reserva', :class=>"btn" %>
+			</div>
+
+		<%end%>
+	</div>
+</div>
+

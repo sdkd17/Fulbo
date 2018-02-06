@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205141316) do
+ActiveRecord::Schema.define(version: 20180206143917) do
 
   create_table "anotados", force: :cascade do |t|
     t.integer "user_id"
@@ -65,6 +65,20 @@ ActiveRecord::Schema.define(version: 20180205141316) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "court_id"
+    t.integer "partido_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "fecha"
+    t.integer "local_id"
+    t.index ["court_id"], name: "index_reservations_on_court_id"
+    t.index ["local_id"], name: "index_reservations_on_local_id"
+    t.index ["partido_id"], name: "index_reservations_on_partido_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
