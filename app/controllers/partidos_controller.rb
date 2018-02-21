@@ -9,7 +9,7 @@ class PartidosController < ApplicationController
     if logged_in?
       todos.each do |partido|
         if current_user.following.include?(User.find(partido.user_id)) 
-          #hacer esto sin que consulte a la basepara encontrar el usuario
+          #hacer esto sin que consulte a la base para encontrar el usuario
           @partidos << partido
         end
       end

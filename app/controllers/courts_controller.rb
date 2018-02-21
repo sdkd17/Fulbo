@@ -3,7 +3,7 @@ class CourtsController < ApplicationController
   end
 
   def create
-    debugger
+    # debugger
     courts_number = params[:courts_number]
     if courts_number == 0
       @court = Court.new(court_params)

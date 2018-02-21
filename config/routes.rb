@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   post  '/login', to: 'sessions#create'
   get 'logout',   to: 'sessions#destroy'
 
+  # get 'locals/canchas' to: 'locals#canchas'
+  
   resources :users do
     member do
       get :following, :followers
@@ -44,6 +46,11 @@ Rails.application.routes.draw do
   resources :partidos
   resources :anotados
   resources :relationships,  only: [:create, :destroy]
-  resources :locals
+  
+  resources :locals do
+    member do
+      get :canchas
+    end
+  end
   resources :courts, only: [:new, :create, :destroy]
 end

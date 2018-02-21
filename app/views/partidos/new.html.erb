@@ -9,7 +9,7 @@
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 
 			<div class="input-field">
-				<%= f.select :local_id do %>
+				<%= f.select :local_id,  {:onchange => "change_on_select(this.options[this.selectedIndex].value);" } do %>
 					<% @locals.each do |local| %>
 						<%= content_tag(:option, local.last, value: local.first) %>
 					<%end%>
@@ -17,9 +17,9 @@
 				<label>Seleccionar Local</label>
 			</div>
 
-			<div class="input-field">
-				<%= f.label :court_id %>
-				<%= f.number_field :court_id, in: 1...15  %>
+			
+			<div id="canchas">
+				
 			</div>
 
 			<%= f.label :fecha %>
@@ -33,3 +33,19 @@
 		<% end %>
 	</div>
 </div>
+
+<script type="text/javascript"> 
+
+
+	$(document).ready(function(){
+		$('#partido_local_id').change(function(){
+			var local_id = $('#partido_local_id').val();
+			$.get('/locals/'+ local_id +'/canchas', function(data, status){
+			if(status === 'success')
+				console.log(status);
+				$('#canchas').html(data);
+			});
+		});
+	});
+	
+</script>

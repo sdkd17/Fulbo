@@ -1,6 +1,6 @@
 class LocalsController < ApplicationController
 
-	before_action :require_owner_login 
+	#before_action :require_owner_login 
 
 	def index
 		@locals = Local.all
@@ -38,10 +38,16 @@ class LocalsController < ApplicationController
 		end
 	end
 
+	def canchas
+		@local = Local.find(params[:id])
+		@canchas = @local.courts.length
+		# debugger
+		render :partial => 'canchas'
+	end
+
 	def destroy
 	end
 
-	
 	private
 
 		def local_params
