@@ -1,10 +1,13 @@
 
+<% if @error_fecha %>
+	<%= render :partial => 'static_pages/error_fecha' %>
+<%end%>
 <div class="card white">
 	<div class="card-content">
 		<span class="card-title center">Crear Partido</span>
 
 	
-		<%= form_for (@partido) do |f| %>
+		<%= form_for @partido do |f| %>
 			
 			<%= f.hidden_field :user_id, :value => current_user.id %>
 
@@ -16,12 +19,9 @@
 				<%end%>
 				<label>Seleccionar Local</label>
 			</div>
-
-			
 			<div id="canchas">
 				
 			</div>
-
 			<%= f.label :fecha %>
 			<div class="input-field">
 				<%= f.datetime_select :fecha, discard_minute: true, default: Date.today %>	

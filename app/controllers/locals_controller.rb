@@ -1,6 +1,6 @@
 class LocalsController < ApplicationController
 
-	#before_action :require_owner_login 
+	before_action :require_owner_login, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
 	def index
 		@locals = Local.all
