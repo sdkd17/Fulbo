@@ -53,6 +53,7 @@ class LocalsController < ApplicationController
 			unless logged_in?
         flash[:error] = "You must be logged in to access this section"
         redirect_to '/login'
+        return
       end
       if current_user.player?
         render 'static_pages/error_tipo_usuario'

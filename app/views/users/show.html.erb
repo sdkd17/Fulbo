@@ -117,13 +117,15 @@
 							<span class="card-title">Partidos Organizados </span>
 							<table class="responsive-table centered bordered white">
 								<thead>
-									<th> Lugar </th>
+									<th> Local </th>
+									<th> Cancha </th>
 									<th> Fecha </th>
 								</thead>
 								<tbody>
 									<% @user.partidos.each do |partido| %>
 									<tr> 
-										<td> <%= partido.lugar %> </td>
+										<td> <%= partido.local_id %> </td>
+										<td> <%= partido.court_id %> </td>
 										<td> <%= partido.fecha %> </td>
 										<td> <%= link_to "Ver", partido, :class=>"btn" %> </td>
 									</tr>
@@ -146,13 +148,15 @@
 							<span class="card-title">Anotado a </span>
 							<table class="responsive-table centered bordered white">
 								<thead>
-									<th> Lugar </th>
+									<th> Local </th>
+									<th> Cancha </th>
 									<th> Fecha </th>
 								</thead>
 								<tbody>
 									<% @user.anotado_a.each do |partido| %>
 									<tr> 
-										<td> <%= partido.lugar %> </td>
+										<td> <%= partido.local_id %> </td>
+										<td> <%= partido.court_id %> </td>
 										<td> <%= partido.fecha %> </td>
 										<td> <%= link_to "Ver", partido, :class=>"btn" %> </td>
 									</tr>

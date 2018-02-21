@@ -17,7 +17,11 @@
 				</tr>
 				<tr>
 					<td>Lugar</td>
-					<td> <%= @partido.lugar %>  </td>
+					<td> <%= Local.find(@partido.local_id).nombre %>  </td>
+				</tr>
+				<tr>
+					<td>Cancha</td>
+					<td> <%= @partido.court_id %>  </td>
 				</tr>
 				<tr>
 					<td>Fecha</td>

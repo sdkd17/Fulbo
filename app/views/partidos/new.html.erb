@@ -7,15 +7,24 @@
 		<%= form_for (@partido) do |f| %>
 			
 			<%= f.hidden_field :user_id, :value => current_user.id %>
-		
+
 			<div class="input-field">
-				<%= f.select :lugar, @local_names %>
+				<%= f.select :local_id do %>
+					<% @locals.each do |local| %>
+						<%= content_tag(:option, local.last, value: local.first) %>
+					<%end%>
+				<%end%>
+				<label>Seleccionar Local</label>
 			</div>
 
-				<%= f.label :fecha%>
-
 			<div class="input-field">
-				<%= f.date_field :fecha %>	
+				<%= f.label :court_id %>
+				<%= f.number_field :court_id, in: 1...15  %>
+			</div>
+
+			<%= f.label :fecha %>
+			<div class="input-field">
+				<%= f.datetime_select :fecha, discard_minute: true, default: Date.today %>	
 			</div>
 
 			<div class="card-action">
