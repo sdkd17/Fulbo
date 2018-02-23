@@ -5,7 +5,7 @@
 			<tbody>
 				<tr>
 					<td> ID Partido</td>
-					<td> <%= @partido.id %>  </td>
+					<td id="partido-id"> <%= @partido.id %>  </td>
 				</tr>
 				<tr>	
 					<td> ID Creador</td>		
@@ -54,10 +54,11 @@
 			<li class="collection-header grey"><h5>Usuarios Anotados</h5></li>
 			<% @partido.anotados.each do |anotado| %>
 				<li class="collection-item">
-					<%= link_to User.find(anotado.user_id).nick, User.find(anotado.user_id) %>
+					<% user_anotado = User.find(anotado.user_id) %>
+					<%= link_to user_anotado.nick, user_anotado %>
 
-					<% if current_user.id == @partido.user_id and not 
-				 		   @partido.aceptados.include?(anotado.user_id)  %>
+					<% if current_user.id == @partido.user_id and 
+								not @partido.aceptados.include?(anotado.user_id)  %>
 							<%= form_tag anotados_aceptar_path do %>
 								<%= hidden_field_tag :user_id, anotado.user_id %>
 								<%= hidden_field_tag :partido_id, @partido.id %>
@@ -74,7 +75,8 @@
 		<ul class="collection with-header z-depth-2">
 			<li class="collection-header grey"><h5>Usuarios Aceptados</h5></li>
 			<% @partido.aceptados.each do |aceptado| %>
-				<li class="collection-item"> <%= link_to User.find(aceptado.user_id).nick, User.find(aceptado.user_id) %> 
+			<% user_aceptado = User.find(aceptado.user_id) %>
+				<li class="collection-item"> <%= link_to user_aceptado.nick, user_aceptado %> 
 
 					<% if current_user.id == aceptado.user_id then %>
 						<%= form_tag anotados_quitar_path do %>
@@ -88,8 +90,33 @@
 		</ul>
 
 	</div>
-</div>		
+</div>
 
+<div class="row">
+	<div class="center" style="margin-bottom: 20px">
+			<p class="btn-large" id="armar-equipos">Armar equipos </p>
+	</div>
+</div>
+	
 
+<h4 class="center z-depth-2 grey" style="padding: 10px">Equipos armados</h4>
+
+<div id="equipos" class="row">
+	
+</div>	
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('#armar-equipos').click(function(){
+			var partido_id = $('#partido-id').val();
+			$.get('/partidos/'+partido_id+'/armar', function(data, status){
+				if(status == 'success'){
+					$('#equipos').html(data);
+				}
+			});
+		});
+	});
+</script>
 
 

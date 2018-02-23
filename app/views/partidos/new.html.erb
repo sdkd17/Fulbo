@@ -23,9 +23,10 @@
 			<div id="canchas">
 				
 			</div>
+			
 			<%= f.label :fecha %>
 			<div class="input-field">
-				<%= f.datetime_select :fecha, discard_minute: true, default: Date.today %>	
+				<%= f.datetime_select :fecha, discard_minute: true, start_year: Date.today.year, end_year: Date.today.year, default: Date.today %>	
 			</div>
 
 			<div class="card-action">
@@ -42,9 +43,11 @@
 		$('#partido_local_id').change(function(){
 			var local_id = $('#partido_local_id').val();
 			$.get('/locals/'+ local_id +'/canchas', function(data, status){
-			if(status === 'success')
-				console.log(status);
+			if(status === 'success'){
+				// console.log(status);
 				$('#canchas').html(data);
+			}
+			
 			});
 		});
 	});

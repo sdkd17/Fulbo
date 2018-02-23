@@ -43,7 +43,11 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :partidos
+  resources :partidos do
+    member do
+      get :armar
+    end
+  end
   resources :anotados
   resources :relationships,  only: [:create, :destroy]
   
