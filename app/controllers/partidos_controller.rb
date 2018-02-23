@@ -32,23 +32,31 @@ class PartidosController < ApplicationController
   end
 
   def create
-    fecha = partido_params[:fecha]
+    fecha = DateTime.new(partido_params["fecha(1i)"].to_i, partido_params["fecha(2i)"].to_i,
+                        partido_params["fecha(3i)"].to_i, partido_params["fecha(4i)"].to_i,0,0)
+
     local_id = partido_params[:local_id]
     court_id = partido_params[:court_id]
     
     @error_fecha = false
+    @partido = Partido.new
+    @locals = Local.all.pluck(:id, :nombre)
+
     #verifico si ya existe un partdo para local y cancha a la misma hora
-    if Partido.where("local_id = ? court_id = ? AND fecha = ?",local_id, court_id, fecha)
-    	@user = User.find(partido_params[:user_id])
-    	@partido = @user.partidos.build(partido_params)
-    	if(@partido.save)
+     # debugger
+    if Partido.where("local_id = ? AND court_id = ? AND fecha = ?",local_id, court_id, fecha).empty?
+      @user = User.find(partido_params[:user_id])
+      @partido = @user.partidos.build(partido_params)
+      if(@partido.save)
         Anotado.create(user_id: @user.id, partido_id: @partido.id)
-    		render 'show'
-    	else
-    		render 'new'
-    	end
+        render 'show'
+      else
+        render 'new'
+      end
     else
       @error_fecha = true;
+      @partido = Partido.new
+      @locals = Local.all.pluck(:id, :nombre)
       render 'new'
     end
   end
