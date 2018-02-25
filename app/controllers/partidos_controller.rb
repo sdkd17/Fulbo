@@ -64,15 +64,25 @@ class PartidosController < ApplicationController
   end
 
   def armar
-    debugger
-    partido = Partido.find(params[:partido_id])
+    partido = Partido.find(params[:id])
+    @equipo1 = Array.new
+    @equipo2 = Array.new
+    
     if partido.aceptados.length == 10
-      5.times do |i|
+      for i in 0..4
         @equipo1 << partido.aceptados[i]
-        i = i + 1
       end 
+      for i in 5..9
+        @equipo2 << partido.aceptados[i]
+      end
+    else
+      @error_cant_aceptados = true
     end
 
+    respond_to do |format|
+      format.html
+      format.js 
+    end
   end
   private
   	def partido_params
