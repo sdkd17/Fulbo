@@ -22,6 +22,7 @@ class LocalsController < ApplicationController
 
 	def show
 		@local = Local.find(params[:id])
+		@partidos = Partido.where("local_id = ?", @local.id)
 		@court = Court.new
 	end
 

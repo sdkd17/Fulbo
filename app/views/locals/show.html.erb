@@ -93,6 +93,30 @@
 			</div>
 		</div>
 
+		<!-- Mostrar partidos para la cancha -->
+		<div class="col s12">
+			<div class="card z-depth-3">
+				<div class="card-content">
+					<span class="card-title">Lista Partidos</span>
+					<table>
+						<thead>
+							<th>Organizador</th>
+							<th>Fecha</th>
+							<th>Cancha</th>
+						</thead>
+						<% @partidos.each do |partido|%>		
+							<tbody>
+								<td> <%= partido.user_id%> </td>
+								<td> <%= partido.fecha%> </td>
+								<td> <%= partido.court_id%> </td>
+								<td> <%= link_to "ver partido", partido_path(partido), :class=>"btn"%> </td>
+							</tbody>
+						<%end%>
+					</table>
+				</div>
+			</div>
+			
+		</div>
 	</div>
 
 </div>
