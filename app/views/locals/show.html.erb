@@ -30,38 +30,40 @@
 		<div class="center" style="margin-bottom: 20px">
 			<%= link_to 'Editar Datos Local', edit_local_path(@local), :class=>'btn-large' %>
 		</div>
-	<%end%>
+	
 
-	<div class="row">
-		<div class="col s6">
-			<div class="card z-depth-3">
-				<div class="card-content">
-					<span class="card-title"> Crear Cancha </span>
-					<%= form_for (@court) do |f| %>
-						
-						<%= f.hidden_field :local_id, :value => @local.id %>
-						
-						<div class="input-field">
-							<%= f.label :precio %>
-							<%= f.text_field :precio %>
-						</div>
+		<div class="row">
+			<div class="col s6">
+				<div class="card z-depth-3">
+					<div class="card-content">
+						<span class="card-title"> Crear Cancha </span>
+						<%= form_for (@court) do |f| %>
+							
+							<%= f.hidden_field :local_id, :value => @local.id %>
+							
+							<div class="input-field">
+								<%= f.label :precio %>
+								<%= f.text_field :precio %>
+							</div>
 
-						<div class="input-field">
-	  					
-						  <%= f.select :court_type, CourtType.court_types.keys %>
-						</div>
+							<div class="input-field">
+							  <%= f.select :court_type, CourtType.court_types.keys %>
+							  <label>Tipo de Cancha</label>
+							</div>
 
-						<div class="input-field">
-							<%= number_field_tag :courts_number, "Cantidad de canchas", in: 1...15%>
-						</div>
+							<div class="input-field">
+								<%= number_field_tag :courts_number, "Cantidad de canchas", in: 1...15%>
+								<label>Cantidad</label>
+							</div>
 
-						<div class="card-action">
-							<%= f.submit "Crear Cancha", :class =>"btn" %>
-						</div>
-					<%end%>
+							<div class="card-action">
+								<%= f.submit "Crear Cancha", :class =>"btn" %>
+							</div>
+						<%end%>
+					</div>
 				</div>
 			</div>
-		</div>
+		<%end%>
 
 		<div class="col s6">
 			<div class="card z-depth-3">
@@ -69,11 +71,19 @@
 					<span class="card-title"> Lista Canchas </span>
 					<ul class="collection">
 						<% @local.courts.each do |court| %>
-							<li class="collection-item"> 
-								<span> 	<%= court.id %> </span>|
-												<%= court.precio %>		 |
-												<%= court.court_type %>
-							</li>
+							<table class="bordered centered">
+								<thead>
+									<th> Numero </th>
+									<th> Precio </th>
+									<th> Tipo </th>
+								</thead>
+								<tbody>
+									<td> <%= court.id %> </td>
+									<td> $<%= court.precio %> </td>
+									<td> <%= court.court_type %> </td>
+								</tbody>
+							</table>
+							
 						<% end %>
 					</ul>
 				</div>
@@ -83,6 +93,30 @@
 			</div>
 		</div>
 
+		<!-- Mostrar partidos para la cancha -->
+		<div class="col s12">
+			<div class="card z-depth-3">
+				<div class="card-content">
+					<span class="card-title">Lista Partidos</span>
+					<table>
+						<thead>
+							<th>Organizador</th>
+							<th>Fecha</th>
+							<th>Cancha</th>
+						</thead>
+						<% @partidos.each do |partido|%>		
+							<tbody>
+								<td> <%= partido.user_id%> </td>
+								<td> <%= partido.fecha%> </td>
+								<td> <%= partido.court_id%> </td>
+								<td> <%= link_to "ver partido", partido_path(partido), :class=>"btn"%> </td>
+							</tbody>
+						<%end%>
+					</table>
+				</div>
+			</div>
+			
+		</div>
 	</div>
 
 </div>

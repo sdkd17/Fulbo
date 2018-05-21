@@ -1,0 +1,6 @@
+<% if @local %>	
+	<div class ="input-field" >
+		<%= label_tag "partido[court_id]", "Cancha" %>
+		<%= number_field_tag "partido[court_id]", 1, min: 1, max: @canchas %>
+	</div>
+<%end%>

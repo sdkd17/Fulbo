@@ -50,7 +50,14 @@ puts 'cargo partidos'
 
 5.times do |i|
 	i = i + 1
-	Partido.create!([user_id: i , lugar: "Local_" + ((i/3)+1).to_s, fecha: "25-12-2018 12:00"])
+	Partido.create!([user_id: i , local_id: ((i/3)+1), court_id: 1, fecha: "25-12-2018 12:00"])
+end
+
+puts 'cargo anotados'
+
+10.times do |i|
+	Anotado.create!([user_id: i+1, partido_id: 2, aceptado: true])
+	i = i + 1
 end
 
 puts 'Finish loading data'

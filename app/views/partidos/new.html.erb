@@ -1,21 +1,32 @@
 
+<% if @error_fecha %>
+	<%= render :partial => 'static_pages/error_fecha' %>
+	<% @error_fecha = false %>
+<%end%>
 <div class="card white">
 	<div class="card-content">
 		<span class="card-title center">Crear Partido</span>
 
 	
-		<%= form_for (@partido) do |f| %>
+		<%= form_for @partido do |f| %>
 			
 			<%= f.hidden_field :user_id, :value => current_user.id %>
-		
+
 			<div class="input-field">
-				<%= f.select :lugar, @local_names %>
+				<%= f.select :local_id,  {:onchange => "change_on_select(this.options[this.selectedIndex].value);" } do %>
+					<% @locals.each do |local| %>
+						<%= content_tag(:option, local.last, value: local.first) %>
+					<%end%>
+				<%end%>
+				<label>Seleccionar Local</label>
 			</div>
-
-				<%= f.label :fecha%>
-
+			<div id="canchas">
+				
+			</div>
+			
+			<%= f.label :fecha %>
 			<div class="input-field">
-				<%= f.date_field :fecha %>	
+				<%= f.datetime_select :fecha, discard_minute: true, start_year: Date.today.year, end_year: Date.today.year, default: Date.today %>	
 			</div>
 
 			<div class="card-action">
@@ -24,3 +35,21 @@
 		<% end %>
 	</div>
 </div>
+
+<script type="text/javascript"> 
+
+
+	$(document).ready(function(){
+		$('#partido_local_id').change(function(){
+			var local_id = $('#partido_local_id').val();
+			$.get('/locals/'+ local_id +'/canchas', function(data, status){
+			if(status === 'success'){
+				// console.log(status);
+				$('#canchas').html(data);
+			}
+			
+			});
+		});
+	});
+	
+</script>

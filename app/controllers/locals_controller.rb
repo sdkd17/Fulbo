@@ -1,6 +1,6 @@
 class LocalsController < ApplicationController
 
-	before_action :require_owner_login 
+	before_action :require_owner_login, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@locals = Local.all
@@ -22,6 +22,7 @@ class LocalsController < ApplicationController
 
 	def show
 		@local = Local.find(params[:id])
+		@partidos = Partido.where("local_id = ?", @local.id)
 		@court = Court.new
 	end
 
@@ -38,10 +39,16 @@ class LocalsController < ApplicationController
 		end
 	end
 
+	def canchas
+		@local = Local.find(params[:id])
+		@canchas = @local.courts.length
+		# debugger
+		render :partial => 'canchas'
+	end
+
 	def destroy
 	end
 
-	
 	private
 
 		def local_params
@@ -53,6 +60,7 @@ class LocalsController < ApplicationController
 			unless logged_in?
         flash[:error] = "You must be logged in to access this section"
         redirect_to '/login'
+        return
       end
       if current_user.player?
         render 'static_pages/error_tipo_usuario'

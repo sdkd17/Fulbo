@@ -5,6 +5,7 @@
 		<thead> 
 			<th> Nick Organizador </th>
 			<th> Lugar </th>
+			<th> Cancha </th>
 			<th> Fecha </th>
 		</thead>
 
@@ -15,7 +16,9 @@
 				<% @partidos.each do |partido| %>
 					<tr> 
 						<td> <%= link_to partido.user.nick, partido.user 	%></td>
-						<td> <%= partido.lugar 		%></td>
+						<td> <%=  #esto hace muchas consultas
+								Local.find(partido.local_id).nombre 		%></td> 
+						<td> <%= partido.court_id 		%></td>
 						<td> <%= partido.fecha 		%></td>
 						<td> <%= link_to 'Ver Partido', partido, :class=>"btn" 		%></td>
 					</tr>

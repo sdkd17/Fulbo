@@ -2,8 +2,10 @@
 <nav class="z-depth-5">
 	<div class="nav-wrapper green darken-3">
 		<ul class="left hide-on-med-and-down">
-			<li> <%= link_to "Usuarios", users_path %></li>
-			<li> <%= link_to "Partidos", partidos_path %></li>
+			<% if logged_in? %>
+				<li> <%= link_to "Usuarios", users_path %></li>
+				<li> <%= link_to "Partidos", partidos_path %></li>
+			<%end%>
 			<li> <%= link_to "Locales", locals_path %></li>
 			<% if logged_in? %>
 				<% if current_user.local_owner? %>

@@ -1,0 +1,18 @@
+<h4 class="center z-depth-2 grey" style="padding: 10px">Equipos armados</h4>
+<div class="col s6">
+		<ul class="collection with-header z-depth-2">
+			<li class="collection-header grey"> <h5> Equipo 1 </h5> </li>
+			<% @equipo1.each do |anotado| %>
+				<li class="collection-item"> <%= anotado.user_id %> </li>
+			<%end%>
+		</ul>
+</div>	
+
+<div class="col s6">
+	<ul class="collection with-header z-depth-2">
+		<li class="collection-header grey"> <h5> Equipo 2 </h5> </li>
+		<% @equipo2.each do |anotado| %>
+			<li class="collection-item"> <%= anotado.user_id %> </li>
+		<%end%>
+	</ul>
+</div>
