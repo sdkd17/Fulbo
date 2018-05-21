@@ -17,7 +17,7 @@
 				</tr>
 				<tr>
 					<td>Lugar</td>
-					<td> <%= Local.find(@partido.local_id).nombre %>  </td>
+					<td> <%= link_to @local.nombre, @local %>  </td>
 				</tr>
 				<tr>
 					<td>Cancha</td>
@@ -25,7 +25,11 @@
 				</tr>
 				<tr>
 					<td>Fecha</td>
-					<td> <%= @partido.fecha %> </td>
+					<td> <%= @partido.fecha.strftime("%d/%m/%y") %> </td>
+				</tr>
+				<tr>
+					<td>Hora</td>
+					<td> <%= @partido.fecha.strftime("%H:%M") %> </td>
 				</tr>
 			</tbody>
 	</table>
@@ -88,7 +92,6 @@
 				</li>
 			<%end%>
 		</ul>
-
 	</div>
 </div>
 

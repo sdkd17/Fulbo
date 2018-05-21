@@ -13,11 +13,15 @@ class PartidosController < ApplicationController
           @partidos << partido
         end
       end
+    else
+      @partidos = todos
     end
+
   end
 
   def show
     @partido = Partido.find(params[:id])
+    @local = Local.find(@partido.local_id)
     @anotado = nil
     unless @partido.anotados.include?(Anotado.find_by({partido_id: @partido.id, user_id: current_user.id}))
       @anotado = Anotado.new
@@ -40,8 +44,7 @@ class PartidosController < ApplicationController
       @partido = Partido.new
       @locals = Local.all.pluck(:id, :nombre)
 
-      #verifico si ya existe un partdo para local y cancha a la misma hora
-       # debugger
+      #verifico si ya existe un partido para local y cancha a la misma hora
       if Partido.where("local_id = ? AND court_id = ? AND fecha = ?",local_id, court_id, fecha).empty?
         @user = User.find(partido_params[:user_id])
         @partido = @user.partidos.build(partido_params)

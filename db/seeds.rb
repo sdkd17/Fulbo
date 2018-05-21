@@ -38,11 +38,11 @@ Relationship.create([follower_id: 8, followed_id: 9])
 
 puts 'cargo locales'
 3.times do |i|
-	Local.create!([nombre: "Local_"+(i+1).to_s , user_id: 11+i, barrio: "barrio", direccion: "direccion", 
+	Local.create!([nombre: "Local_"+(i+1).to_s , user_id: i+1, barrio: "barrio", direccion: "direccion", 
 							telefono: "12346789", email: "email@email.com", opens: "17", closes: "23" ])
 	#creo una cancha en el local
 
-	Court.create!([local_id: i+1, court_type: "F5", precio: "150"])
+	Court.create!([local_id: (i+1), court_type: "F5", precio: "150"])
 	i = i+1
 end
 
@@ -50,7 +50,8 @@ puts 'cargo partidos'
 
 5.times do |i|
 	i = i + 1
-	Partido.create!([user_id: i , local_id: ((i/3)+1), court_id: 1, fecha: "25-12-2018 12:00"])
+	
+	Partido.create!([user_id: i+1 , local_id: ((i%3)+1), court_id: 1, fecha: "25-12-2018 1"+i.to_s+":00"])
 end
 
 puts 'cargo anotados'
