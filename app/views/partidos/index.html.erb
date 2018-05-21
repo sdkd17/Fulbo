@@ -7,6 +7,7 @@
 			<th> Lugar </th>
 			<th> Cancha </th>
 			<th> Fecha </th>
+			<th> Hora </th>
 		</thead>
 
 		<tbody >
@@ -17,9 +18,10 @@
 					<tr> 
 						<td> <%= link_to partido.user.nick, partido.user 	%></td>
 						<td> <%=  #esto hace muchas consultas
-								Local.find(partido.local_id).nombre 		%></td> 
-						<td> <%= partido.court_id 		%></td>
-						<td> <%= partido.fecha 		%></td>
+									partido.local.nombre %></td> 
+						<td> <%= partido.court_id %></td>
+						<td> <%= partido.fecha.strftime("%d/%m/%y") %></td>
+						<td> <%= partido.fecha.strftime("%H:%M") %></td>
 						<td> <%= link_to 'Ver Partido', partido, :class=>"btn" 		%></td>
 					</tr>
 				<% end %>

@@ -8,7 +8,8 @@ class PartidosController < ApplicationController
      
     if logged_in?
       todos.each do |partido|
-        if current_user.following.include?(User.find(partido.user_id)) 
+        
+        if current_user.following.pluck(:id).include?(partido.user_id) 
           #hacer esto sin que consulte a la base para encontrar el usuario
           @partidos << partido
         end
@@ -44,18 +45,14 @@ class PartidosController < ApplicationController
       @partido = Partido.new
       @locals = Local.all.pluck(:id, :nombre)
 
-      #verifico si ya existe un partido para local y cancha a la misma hora
-      if Partido.where("local_id = ? AND court_id = ? AND fecha = ?",local_id, court_id, fecha).empty?
-        @user = User.find(partido_params[:user_id])
-        @partido = @user.partidos.build(partido_params)
-        if(@partido.save)
-          Anotado.create(user_id: @user.id, partido_id: @partido.id)
-          render 'show'
-        else
-          render 'new'
-        end
+      
+      @user = User.find(partido_params[:user_id])
+      @partido = @user.partidos.build(partido_params)
+      if(@partido.save)
+        Anotado.create(user_id: @user.id, partido_id: @partido.id)
+        render 'show'
       else
-        @error_fecha = true;
+        @error_fecha = true
         render 'new'
       end
     else

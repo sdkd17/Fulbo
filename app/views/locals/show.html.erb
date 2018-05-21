@@ -102,17 +102,22 @@
 						<thead>
 							<th>Organizador</th>
 							<th>Fecha</th>
+							<th>Hora</th>
 							<th>Cancha</th>
 						</thead>
 						<% @partidos.each do |partido|%>		
 							<tbody>
-								<td> <%= partido.user_id%> </td>
-								<td> <%= partido.fecha%> </td>
+								<td> <%= partido.user.nick %> </td>
+								<td> <%= partido.fecha.strftime("%d/%m/%y")%> </td>
+								<td> <%= partido.fecha.strftime("%H:%M")%> </td>
 								<td> <%= partido.court_id%> </td>
-								<td> <%= link_to "ver partido", partido_path(partido), :class=>"btn"%> </td>
+								<!-- <td> <%= link_to "ver partido", partido_path(partido), :class=>"btn"%> </td> -->
 							</tbody>
 						<%end%>
 					</table>
+				</div>
+				<div class="card-action">
+					<%= link_to "Crear Partido", new_partido_path, :class => "btn" %>
 				</div>
 			</div>
 			
